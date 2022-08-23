@@ -14,8 +14,7 @@ function play(e) {
   const playerChoice = e.target.id;
   const computerChoice = getComputerChoice();
   const winner = getWinner(playerChoice, computerChoice);
-
-  console.log(playerChoice, computerChoice, winner);
+  showWinner(winner, computerChoice);
 }
 
 // Get computer's choice
@@ -55,5 +54,49 @@ function getWinner(p, c) {
   }
 }
 
+// Show winner
+function showWinner(winner, computerChoice) {
+  if (winner === "player") {
+    // Increase player score
+    scoreboard.player++;
+    // Show modal result
+    result.innerHTML = `
+      <h1 class="text-win">You Win</h1>
+      <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+      <p>Computer Chose <strong>${computerChoice}</strong></p>
+    `;
+  } else if (winner === "computer") {
+    // Increase computer score
+    scoreboard.computer++;
+    // Show modal result
+    result.innerHTML = `
+      <h1 class="text-lose">You Lose</h1>
+      <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+      <p>Computer Chose <strong>${computerChoice}</strong></p>
+    `;
+  } else {
+    result.innerHTML = `
+      <h1>It's A Draw</h1>
+      <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+      <p>Computer Chose <strong>${computerChoice}</strong></p>
+    `;
+  }
+
+  // Show score
+  score.innerHTML = `
+    <p>Player: ${scoreboard.player}</p>
+    <p>Computer: ${scoreboard.computer}</p>
+  `;
+
+  modal.style.display = "block";
+}
+
+// Clear modal
+function clearModal(e) {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+}
 // Event Listeners
 choices.forEach((choice) => choice.addEventListener("click", play));
+window.addEventListener("click", clearModal);
