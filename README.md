@@ -4,7 +4,7 @@
 
 ## Demo
 
-This app is deployed on netlify. Try it [RockPaperScissors Game](https://whimsical-cobbler-7797c5.netlify.app/)
+This app is deployed on netlify. Try it [RockPaperScissors Game](https://astounding-gumption-c4d467.netlify.app/)
 
 ## Tech Stack
 
